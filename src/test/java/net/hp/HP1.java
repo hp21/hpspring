@@ -25,6 +25,40 @@ public class HP1 {
   }
 
   @Test
+  public void testEvalString() {
+
+    int result = service.evalString("");
+    assertTrue(0 == result);
+
+    result = service.evalString("2");
+    assertTrue(2 == result);
+
+    result = service.evalString("33");
+    assertTrue(33 == result);
+
+    result = service.evalString("3,4");
+    assertTrue(7 == result);
+
+    result = service.evalString("[,]");
+    assertTrue(0 == result);
+
+    result = service.evalString("[,4,5,]");
+    assertTrue(0 == result);
+
+    result = service.evalString("3,[,4,5,]");
+    assertTrue(27 == result);
+
+    result = service.evalString("[,2,3,],4");
+    assertTrue(4 == result);
+
+    result = service.evalString("1,[,3,4,],[,5,3,],2");
+    assertTrue(58 == result);
+
+    result = service.evalString("1,[,3,4,[,5,3,],5,]");
+    assertTrue(61 == result);
+  }
+
+  @Test
   public void testEval() {
 
     List<String> inList = new ArrayList<String>();

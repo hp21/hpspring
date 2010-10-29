@@ -21,14 +21,18 @@ public class AddMult {
 
   }
 
-  private int evalString(String str) {
+  public int evalString(String str) {
+    if (0 == str.length()) {
+      return 0;
+    }
+    
     index = 0;
-    List<String> inList = Arrays.asList(str.split(" |,"));
+    List<String> inList = Arrays.asList(str.split(","));
     int res = eval(inList);
     return res;
   }
 
-  public int eval1(List<String> inList, int start) {
+  public int eval1(List<String> inList) {
     int sum = 0;
 
     while (index < inList.size()) {
@@ -37,7 +41,8 @@ public class AddMult {
         Integer val = Integer.valueOf(str);
         sum = sum + val;
       } else if ("[".equals(str)) {
-        sum = sum * eval1(inList, index++);
+        index++;
+        sum = sum * eval1(inList);
       } else if ("]".equals(str)) {
         return sum;
       } else {
@@ -54,7 +59,7 @@ public class AddMult {
   public int eval(List<String> inList) {
 
     index = 0;
-    return eval1(inList, 0);
+    return eval1(inList);
   }
 
   private boolean isDigit(String str) {
