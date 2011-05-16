@@ -15,6 +15,7 @@
   <si:channel id="output">
     <si:queue capacity="10" />
   </si:channel>
-  <si:service-activator input-channel="input" output-channel="output" ref="shouter" method="shoutm" />
+ <!--  <si:service-activator input-channel="input" output-channel="output" ref="shouter" method="shoutm" /> -->
+  <si:service-activator input-channel="input" output-channel="output" ref="shouter" method="shout" />
   <bean id="shouter" class="net.hp.st.Shouter" />
 </beans>
