@@ -14,7 +14,7 @@ public class HPProducer {
      */
 
     int value = counter.getAndIncrement();
-    return counter.get() % 3 == 0 ? String.valueOf(value) : null;
+    return value % 3 != 0 ? String.valueOf(value) : null;
   }
 
 }

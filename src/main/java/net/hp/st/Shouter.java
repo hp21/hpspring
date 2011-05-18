@@ -1,16 +1,19 @@
 package net.hp.st;
 
-import org.springframework.integration.core.Message;
-import org.springframework.integration.message.StringMessage;
+import org.springframework.integration.Message;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.integration.message.GenericMessage;
+
 
 public class Shouter {
 
+  @ServiceActivator
   public String shout(String s) {
-    return s.toUpperCase().concat("!!!");
+    return s.concat("!!!");
   }
 
   public Message<String> shoutm(Message<String> s) {
-    return new StringMessage(s.getPayload().toUpperCase().concat("!!! [message version]"));
+    return new GenericMessage<String>(s.getPayload().toUpperCase().concat("!!! [message version]"));
   }
   
   public void shout3(Message<String> s) {

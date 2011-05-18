@@ -1,8 +1,8 @@
 package net.hp.st;
 
+import org.springframework.integration.Message;
+import org.springframework.integration.MessageChannel;
 import org.springframework.integration.channel.ChannelInterceptor;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
 
 public class HPInterceptor implements ChannelInterceptor {
 

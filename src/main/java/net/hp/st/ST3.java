@@ -1,20 +1,13 @@
 package net.hp.st;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
+import org.springframework.integration.Message;
+import org.springframework.integration.MessageDeliveryException;
+import org.springframework.integration.MessageHandlingException;
+import org.springframework.integration.MessageRejectedException;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.ExecutorChannel;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.message.MessageDeliveryException;
-import org.springframework.integration.message.MessageHandler;
-import org.springframework.integration.message.MessageHandlingException;
-import org.springframework.integration.message.MessageRejectedException;
-import org.springframework.integration.message.StringMessage;
+import org.springframework.integration.core.MessageHandler;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 public class ST3 {
@@ -56,7 +49,7 @@ public class ST3 {
         }
       }
       System.out.println("*** Sending " + i);
-      channel.send(new StringMessage("MESSAGE BODY " + i));
+      channel.send(MessageBuilder.withPayload("MESSAGE BODY " + i).build());
     }
 
   }
@@ -75,7 +68,7 @@ public class ST3 {
 
     channel.subscribe(handler);
 
-    channel.send(new StringMessage("MESSAGE BODY"));
+    channel.send(MessageBuilder.withPayload("MESSAGE BODY").build());
 
     for (int i = 0; i < 20; i++) {
       if (i % 3 == 0) {
@@ -85,7 +78,7 @@ public class ST3 {
           e.printStackTrace();
         }
       }
-      channel.send(new StringMessage("MESSAGE BODY " + i));
+      channel.send(MessageBuilder.withPayload("MESSAGE BODY " + i).build());
     }
 
   }

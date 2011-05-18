@@ -2,10 +2,10 @@ package net.hp.st;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.integration.channel.PollableChannel;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
-import org.springframework.integration.message.StringMessage;
+import org.springframework.integration.Message;
+import org.springframework.integration.MessageChannel;
+import org.springframework.integration.core.PollableChannel;
+import org.springframework.integration.support.MessageBuilder;
 
 public class ST1 {
 
@@ -22,7 +22,7 @@ public class ST1 {
     ApplicationContext context = new ClassPathXmlApplicationContext("st1.xml");
     MessageChannel input = (MessageChannel) context.getBean("input");
     PollableChannel output = (PollableChannel) context.getBean("output");
-    input.send(new StringMessage("Spring Integration rocks"));
+    input.send(MessageBuilder.withPayload("Spring Integration rocks").build());
     Message<?> reply = output.receive();
     System.out.println("received: " + reply.getPayload());
     
