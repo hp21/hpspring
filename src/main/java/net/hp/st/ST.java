@@ -23,8 +23,10 @@ public class ST {
   public void run() {
 
     ApplicationContext context = new ClassPathXmlApplicationContext("st.xml");
+    
     PollableChannel channel = (PollableChannel) context.getBean("channel");
     channel.send(MessageBuilder.withPayload("Spring Integration rocks").build());
+    
     Message<?> reply = channel.receive();
     System.out.println("received: " + reply);
     System.out.println("received: " + reply.getPayload());

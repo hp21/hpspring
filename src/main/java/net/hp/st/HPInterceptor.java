@@ -16,7 +16,6 @@ public class HPInterceptor implements ChannelInterceptor {
   @Override
   public void postSend(Message<?> message, MessageChannel channel, boolean sent) {
     System.out.println("postSend" + message + "/" + channel + "/" + sent);
-
   }
 
   @Override

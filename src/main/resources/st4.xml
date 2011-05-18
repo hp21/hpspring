@@ -14,9 +14,12 @@
   <si:channel id="channel" />
   <si:inbound-channel-adapter ref="hp1" method="produce" channel='channel'>
     <si:poller>
-      <si:interval-trigger interval="2000" time-unit="MILLISECONDS" fixed-rate="true"/>
+      <si:interval-trigger interval="2000" time-unit="MILLISECONDS" fixed-rate="true" />
       <!-- <si:cron-trigger expression="1 * 9-17 * * MON-FRI"/> -->
     </si:poller>
   </si:inbound-channel-adapter>
   <bean id="hp1" class="net.hp.st.HPProducer" />
+  
+  <si:publish-subscribe-channel id="publish-subscribe-channel1" />
+  
 </beans>
