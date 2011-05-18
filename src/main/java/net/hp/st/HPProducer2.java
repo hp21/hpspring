@@ -9,8 +9,13 @@ public class HPProducer2 {
   public String produce() {
 
     int value = counter.getAndIncrement();
+
+    if (value > 100) {
+      return null;
+    }
+
     System.out.println(String.format("%s called: %d times", this.getClass().getName(), value));
-    
+
     return String.valueOf(value);
   }
 

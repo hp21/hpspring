@@ -13,20 +13,20 @@
     method="produce"
   >
     <int:poller>
-      <int:interval-trigger interval="500" time-unit="MILLISECONDS" fixed-rate="true" />
+      <int:interval-trigger interval="50" time-unit="MILLISECONDS" fixed-rate="true" />
       <!-- <si:cron-trigger expression="1 * 9-17 * * MON-FRI"/> -->
     </int:poller>
   </int:inbound-channel-adapter>
-  <bean id="producer" class="net.hp.st.HPProducer2"></bean>
+  <bean id="producer" class="net.hp.st.HPProducer2" />
 
   <bean id="polling-consumer" class="org.springframework.integration.endpoint.PollingConsumer">
     <constructor-arg ref="channel" />
     <constructor-arg ref='message-handler' />
-    <property name="maxMessagesPerPoll" value="30" />
-    <property name="trigger" ref="periodic-trigger"/>
-    <property name="receiveTimeout" value="50"></property>
-
+    <property name="maxMessagesPerPoll" value="20" />
+    <property name="trigger" ref="periodic-trigger" />
+    <property name="receiveTimeout" value="200" />
   </bean>
+  
   <bean id="message-handler" class="net.hp.st.HPMessageHandler">
     <property name="handlerName" value="1" />
   </bean>
