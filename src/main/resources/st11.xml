@@ -9,11 +9,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 >
   <int:channel id="channel"></int:channel>
-  <int-feed:inbound-channel-adapter id="input-feed-adapter" channel="channel"
-    url="http://feeds.bbci.co.uk/news/rss.xml"
+  <int-feed:inbound-channel-adapter id="input-feed-adapter" channel="inputRssFeedChannel"
+    url="http://www.budapestbank.hu/export/rss/alapkezelo.xml"
   >
     <int:poller fixed-rate="10000" max-messages-per-poll="2" />
   </int-feed:inbound-channel-adapter>
-  <int:service-activator input-channel="channel" id="hp-logger" ref="serviceActivatorToString"></int:service-activator>
+  <int:transformer input-channel="inputRssFeedChannel" output-channel="channel"
+    ref="syndFeedNewsItemTransformer" />
+  <bean id='syndFeedNewsItemTransformer' class="net.hp.st.SyndItemTransFormer" />
+  <int:service-activator input-channel="channel" id="hp-logger" ref="serviceActivatorToString" />
   <context:component-scan base-package="net.hp.st9" />
 </beans>
