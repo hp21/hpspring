@@ -16,7 +16,7 @@
 		<property name="name" value="QQRQ" />
 		<property name="dob" value="12/12/2012" />
 	</bean>
-	
+
 	<bean id="hp-person-2" class="net.hp.jmx.a.Person">
 		<property name="name" value="QQRQ2" />
 		<property name="dob" value="02/02/1902" />
@@ -29,9 +29,9 @@
 				<entry key="bean:name=testBean1" value-ref="hp-person" />
 			</map>
 		</property>
-		<property name="server" ref="mbeanServer"/>
+		<property name="server" ref="mbeanServer" />
 	</bean>
-	
+
 	<bean id="exporter-2" class="org.springframework.jmx.export.MBeanExporter"
 		lazy-init="false">
 		<property name="beans">
@@ -39,7 +39,7 @@
 				<entry key="bean:name=hp-person-2" value-ref="hp-person-2" />
 			</map>
 		</property>
-		<property name="server" ref="mbeanServer"/>
+		<property name="server" ref="mbeanServer" />
 	</bean>
 
 	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
@@ -48,5 +48,11 @@
 		<!-- search for the MBeanServer instance with the given agentId -->
 		<!-- <property name="agentId" value="hp-mbean-server" /> -->
 	</bean>
+
+	<bean id="myAspect" class="net.hp.jmx.a.BeforeExample" />
+
+
+
+	<aop:aspectj-autoproxy />
 
 </beans>

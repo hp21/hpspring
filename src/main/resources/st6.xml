@@ -9,7 +9,7 @@
 
 
   <int:channel id="channel1"></int:channel>
-  <int:service-activator input-channel="channel1" id="endpoint"></int:service-activator>
+<!--   <int:service-activator input-channel="channel1" id="endpoint"></int:service-activator> -->
   <int:inbound-channel-adapter channel="channel1" id="chanelAdapter" ref="hpProducer" method="produce"></int:inbound-channel-adapter>
   <bean id="hpProducer" class="net.hp.st.HPProducer"></bean>
 </beans>
