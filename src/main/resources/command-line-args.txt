@@ -1,0 +1,7 @@
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=7878
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Djava.rmi.activation.port=2098
+-Djava.rmi.server.logCalls=true
+
