@@ -16,7 +16,7 @@ public class A1 {
 
 	private void run() {
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("jmx.a.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("jmx-a.xml");
 		Person person = context.getBean("hp-person", Person.class);
 
 		System.out.println(person);
