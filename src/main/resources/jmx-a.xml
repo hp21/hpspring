@@ -51,7 +51,12 @@
 
 	<bean id="myAspect" class="net.hp.jmx.a.BeforeExample" />
 
-
+	<bean id="serverConnector"
+		class="org.springframework.jmx.support.ConnectorServerFactoryBean"
+		lazy-init="false">
+		<!-- <property name="objectName" value="connector:name=rmi"/> -->
+		<property name="serviceUrl" value="service:jmx:jmxmp://localhost:5555" />
+	</bean>
 
 	<aop:aspectj-autoproxy />
 
