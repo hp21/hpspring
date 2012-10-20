@@ -71,7 +71,7 @@
 		class="org.springframework.jmx.support.ConnectorServerFactoryBean" depends-on="registry">
 		<property name="objectName" value="connector:name=rmi" />
 		<property name="serviceUrl"
-			value="service:jmx:rmi://localhost/jndi/rmi://localhost:2099/jmxrmi" />
+			value="service:jmx:rmi://localhost:7878/jndi/rmi://localhost:2099/jmxrmi" />
 	</bean>
 
 	 <bean id="registry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
